@@ -1,5 +1,7 @@
 # cdQA-annotator
 
+Fork of [cdqa-suite's cdQA-annotator](https://github.com/cdqa-suite/cdQA-annotator) with added support for SQuAD 2.0 datasets with `is_impossible` flag and missing `text` field support.
+
 ![GitHub](https://img.shields.io/github/license/cdqa-suite/cdQA-annotator.svg)
 
 A web-based annotator for closed-domain question answering datasets with SQuAD format
@@ -9,7 +11,7 @@ A web-based annotator for closed-domain question answering datasets with SQuAD f
 Clone the repository:
 
 ```shell
-git clone https://github.com/cdqa-suite/cdQA-annotator
+git clone https://github.com/vbankov/cdQA-annotator
 ```
 
 Install dependencies
