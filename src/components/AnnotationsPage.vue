@@ -52,6 +52,9 @@
       <b-form-input v-model="answer" type="text" placeholder="Type answer here..."></b-form-input>
       <br>
 
+      <b-form-checkbox id="is-impossible" v-model="is_impossible">Is impossible</b-form-checkbox>
+      <br>
+
       <b-button :size="''" :variant="'secondary'" v-on:click="addAnnotation()">Add annotation</b-button> or 
       <b-button
         v-if="context_number < json.data[data_number - 1].paragraphs.length"
@@ -140,8 +143,9 @@ export default {
       context_number: 1,
       question: "",
       answer: "",
-      fields: ["Questions", "Answers", "Edit"],
-      query: ""
+      fields: ["Questions", "Answers", "Impossible", "Edit"],
+      query: "",
+      is_impossible: false
     };
   },
   methods: {
@@ -152,8 +156,10 @@ export default {
       var qa = {
         question: this.question,
         id: uuidv4(),
-        answers: [{ answer_start: this.answer_start, text: this.answer }]
+        answers: [{ answer_start: this.answer_start, text: this.answer }],
+        is_impossible: this.is_impossible
       };
+      console.log(`QA: ${qa}`)
       paragraph_container.qas.push(qa);
       this.question = "";
       this.answer = "";
@@ -201,9 +207,11 @@ export default {
       ];
       var items = [];
       for (var i = 0; i < paragraph_container.qas.length; i++) {
+        var isImpossible = paragraph_container.qas[i].is_impossible ? "True": "False"
         var item = {
           Questions: paragraph_container.qas[i].question,
-          Answers: paragraph_container.qas[i].answers[0].text
+          Answers: paragraph_container.qas[i].answers[0] ? paragraph_container.qas[i].answers[0].text : "-NONE-",
+          Impossible: isImpossible
         };
         items.push(item);
       }
