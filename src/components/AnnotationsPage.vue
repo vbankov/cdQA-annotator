@@ -159,7 +159,6 @@ export default {
         answers: [{ answer_start: this.answer_start, text: this.answer }],
         is_impossible: this.is_impossible
       };
-      console.log(`QA: ${qa}`)
       paragraph_container.qas.push(qa);
       this.question = "";
       this.answer = "";
